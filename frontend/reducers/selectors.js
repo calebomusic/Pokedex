@@ -5,10 +5,12 @@ export const selectAllPokemon = ({pokemon}) => (
 );
 
 export const selectPokemonItem = (state, id) => {
-  const items = state.poke.items;
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].id === id) {
-      return items[i];
+  if (state.poke.items) {
+    const items = state.poke.items;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].id === parseInt(id)) {
+        return items[i];
+      }
     }
   }
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 
 const PokemonDetail = (props) => {
-  // debugger
   let items;
 
   if (props.poke.items) {
     items = props.poke.items.map( (item) => (
-    <li key={item.id}><img src={item.image_url} height="100" width="100"></img></li>));
+    <li key={item.id}><img src={item.image_url} height="100" width="100"></img></li>)
+    );
   }
 
   return(
