@@ -4,10 +4,14 @@ const PokemonDetail = (props) => {
   let items;
 
   if (props.poke.items) {
-    items = props.poke.items.map( (item) => (
-    <li key={item.id}><img src={item.image_url} height="100" width="100"></img></li>)
-    );
-  }
+    items = props.poke.items.map( (item) => {
+    const handleClick = url => e => props.router.push(url);
+    return(<li key={item.id}
+      onClick={handleClick(`pokemon/${props.poke.id}/item/${item.id}`)}>
+      <img src={item.image_url} height="100" width="100"></img>
+      </li>);
+  });
+}
 
   return(
     <div className="pokemon-detail">

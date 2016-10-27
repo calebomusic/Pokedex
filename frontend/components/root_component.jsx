@@ -5,6 +5,7 @@ import PokemonIndexContainer from './pokemon/pokemon_index_container';
 import { requestAllPokemon, requestPokemon } from '../actions/pokemon_actions';
 import PokemonDetailContainer from './pokemon/pokemon_detail_container';
 import ItemDetailContainer from './pokemon/item_detail_container';
+import PokemonFormContainer from './pokemon/pokemon_form_container';
 
 const Root = ({store}) => {
   const requestOnEnter = () => {
@@ -17,8 +18,8 @@ const Root = ({store}) => {
 
   return (<Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/" component={PokemonIndexContainer} onEnter={requestOnEnter}>
-        <IndexRoute component={PokemonIndexContainer} onEnter={requestOnEnter} />
+      <Route path="/" onEnter={requestOnEnter} component={PokemonIndexContainer} >
+        <IndexRoute component={PokemonFormContainer}/>
         <Route path="pokemon/:pokemonId" component={PokemonDetailContainer} onEnter={requestSinglePokemon}>
           <Route path="item/:itemId" component={ItemDetailContainer} />
         </Route>
