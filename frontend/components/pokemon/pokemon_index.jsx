@@ -1,14 +1,15 @@
 import React from 'react';
+import PokemonIndexItem from './pokemon_index_item';
 
-const PokemonIndex = ({pokemon}) => {
-  const allPokemon = pokemon.map((poke, index) => (
-    <li key={index}>
-      <h1>{poke.name}</h1>
-      <img src={poke.image_url}  height="100" width="100" />
-    </li>
-  ));
-
-  return(<ul>{allPokemon}</ul>);
-};
+const PokemonIndex = (props) => (
+  <section className="pokedex">
+    {props.children}
+    <ul>
+      {props.pokemon.map((poke) => (
+        <PokemonIndexItem key={poke.id} poke={poke} />
+        ))}
+    </ul>
+  </section>
+);
 
 export default PokemonIndex;
