@@ -6,7 +6,9 @@ const mapDispatchtoProps = (dispatch) => ({
   createNewPokemon: (poke) => dispatch(createNewPokemon(poke))
 });
 
-const mapStatetoProps = () => ({});
+const mapStatetoProps = (state) => ({
+  errors: state.errors
+});
 
 export default connect(
   mapStatetoProps,

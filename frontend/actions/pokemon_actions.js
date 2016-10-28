@@ -4,6 +4,7 @@ export const RECEIVE_POKEMON = "RECEIVE_POKEMON";
 export const REQUEST_POKEMON = "REQUEST_POKEMON";
 export const CREATE_NEW_POKEMON = "CREATE_NEW_POKEMON";
 export const RECEIVE_NEW_POKEMON = "RECEIVE_NEW_POKEMON";
+export const RECEIVE_POKEMON_ERRORS = "RECEIVE_POKEMON_ERRORS"
 
 
 export const receiveAllPokemon = pokemon => ({
@@ -33,4 +34,9 @@ export const createNewPokemon = (poke) => ({
 export const receiveNewPokemon = (poke) => ({
   type: RECEIVE_NEW_POKEMON,
   poke
+});
+
+export const receivePokemonErrors = (errors) => ({
+  type: RECEIVE_POKEMON_ERRORS,
+  errors
 });

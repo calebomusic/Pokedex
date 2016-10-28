@@ -12,11 +12,11 @@ class Api::PokemonController < ApplicationController
     if @pokemon.save
       render :show
     else
-      render json: @pokemon.errors
+      render @pokemon.errors
     end
   end
 
   def pokemon_params
-    params.permit(:name, :attack, :defense, :poke_type, :moves, :image_url, :items)
+    params.permit(:name, :attack, :defense, :poke_type, :image_url, :items, moves: [])
   end
 end

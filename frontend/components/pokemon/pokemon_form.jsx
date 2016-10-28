@@ -8,11 +8,13 @@ class PokemonForm extends React.Component {
       attack: '',
       defense: '',
       poke_type: '',
-      moves: [],
+      moves: '',
       image_url: ''
     };
     this.updateForm = this.updateForm.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.configureMoves = this.configureMoves.bind(this);
+    this.configureErrors = this.configureErrors.bind(this);
   }
 
   updateForm(property){
@@ -28,10 +30,28 @@ class PokemonForm extends React.Component {
   }
 
 
+  configureMoves(createPokemon) {
+    let movesArray = [];
+    if (this.state.moves) {
+      movesArray = this.state.moves.split(', ');
+    }
+    this.setState({moves: movesArray}, createPokemon);
+  }
+
+  configureErrors() {
+    let showErrors;
+    if (this.props.errors) {
+        let keys = Object.keys(this.props.errors);
+        showErrors = keys.map(key => (
+        <li key={key}> {this.props.errors[key]} </li>
+      ));
+    }
+    return showErrors;
+  }
+
   handleClick(e){
     e.preventDefault();
-    debugger
-    this.props.createNewPokemon(this.state);
+    this.configureMoves(() => this.props.createNewPokemon(this.state));
   }
 
   render(){
@@ -58,8 +78,10 @@ class PokemonForm extends React.Component {
       <option key={type} value={type}>{type}</option>
     ));
 
-    return (<form className='poke-form'>
+    let showErrors = this.configureErrors();
 
+    return (<form className='poke-form'>
+      <ul>{showErrors}</ul>
       <label>Name</label>
       <input value={this.state.name} onChange={this.updateForm('name')}></input>
       <label>Attack</label>
